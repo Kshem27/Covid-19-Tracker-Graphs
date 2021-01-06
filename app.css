@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+svg {
+	margin: 10px auto;
+	display: block;
+	border: 1px solid black;
+	background: #9c9c9c;
+}
+
+body {
+	text-align: center;
+	font-family: 'Alata', sans-serif;
+}
+.tick line {
+	stroke: #ccc;
+	stroke-dasharray: 5, 5;
+}

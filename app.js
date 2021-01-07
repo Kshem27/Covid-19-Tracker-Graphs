@@ -71,6 +71,45 @@ function graph(item, color) {
 		})
 		.catch((err) => console.log(err));
 }
+var heightSecond = 500;
+// var width = 600;
+var numBars = 37;
+var barPadding = 5;
+var paddin = 10;
+var barWidth = width / numBars - barPadding;
+axios
+	.get(url)
+	.then((res) => {
+		let stateData = res.data['statewise'];
+		stateData.shift();
+		let state = d3.select('#statewise').selectAll('rect').data(stateData, (d, i) => d.confirmed);
+		let maxCases = 2500000;
+		let yScale = d3.scaleLinear().domain([ 0, maxCases ]).range([ heightSecond - paddin, paddin ]);
+
+		let stateEnter = state.enter().append('g');
+		let colorScale = d3
+			.scaleLinear()
+			.domain(d3.extent(stateData, (d) => +d.recovered / +d.confirmed))
+			.range([ 'red', 'green' ]);
+		stateEnter.append('rect');
+		stateEnter.append('text');
+		stateEnter
+			.select('rect')
+			.attr('fill', (d) => colorScale(d.recovered / d.confirmed))
+			.attr('width', barWidth)
+			.attr('height', (d, i) => heightSecond - yScale(d.confirmed))
+			.attr('x', (d, i) => (barWidth + barPadding) * i)
+			.attr('y', (d, i) => yScale(d.confirmed));
+		stateEnter
+			.select('text')
+			.attr('transform', 'rotate(-90)')
+			.attr('y', (d, i) => (barWidth + barPadding) * i + barWidth / 2)
+			.attr('x', (d, i) => -yScale(d.confirmed))
+			.attr('alignment-baseline', 'middle')
+			.attr('font-size', '0.8em')
+			.text((d, i) => d.state);
+	})
+	.catch((err) => console.log(err));
 window.onload = () => {
 	$('#confirmed').click();
 };

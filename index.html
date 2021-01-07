@@ -5,15 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>COVID-19 Graphs</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="./app.css" type="text/css">
 </head>
 <body>
     <h1>COVID-19 TRACKER</h1>
-    <button id='confirmed'>Confirmed</button>
-    <button id='deaths'>Deaths</button>
-    <button id='recovered'>Recovered</button>
-    <h1 id="heading"></h1>
-    <svg></svg>
+    <div class="row">
+        <div class="col-xl-6">
+            <button id='confirmed' class="btn btn-danger">Confirmed</button>
+            <button id='deaths' class="btn btn-dark">Deaths</button>
+            <button id='recovered' class="btn btn-primary">Recovered</button>
+            <h1 id="heading"></h1>
+            <svg></svg>
+        </div>
+        <div class="col-xl-6" id="state">
+            <h1>StateWise Data</h1>
+            <svg id="statewise"></svg>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

@@ -1,4 +1,4 @@
-const url = 'https://api.covid19india.org/data.json';
+const url = 'https://still-coast-68855.herokuapp.com/data';
 const height = 600,
 	width = 600,
 	radius = 2,
@@ -83,7 +83,7 @@ axios
 		let stateData = res.data['statewise'];
 		stateData.shift();
 		let state = d3.select('#statewise').selectAll('rect').data(stateData, (d, i) => d.confirmed);
-		let maxCases = 2500000;
+		let maxCases = 10500000;
 		let yScale = d3.scaleLinear().domain([ 0, maxCases ]).range([ heightSecond - paddin, paddin ]);
 
 		let stateEnter = state.enter().append('g');

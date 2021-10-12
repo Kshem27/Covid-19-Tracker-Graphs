@@ -83,14 +83,14 @@ axios
 		let stateData = res.data['statewise'];
 		stateData.shift();
 		let state = d3.select('#statewise').selectAll('rect').data(stateData, (d, i) => d.confirmed);
-		let maxCases = 10500000;
+		let maxCases = 8000000;
 		let yScale = d3.scaleLinear().domain([ 0, maxCases ]).range([ heightSecond - paddin, paddin ]);
 
 		let stateEnter = state.enter().append('g');
 		let colorScale = d3
 			.scaleLinear()
 			.domain(d3.extent(stateData, (d) => +d.recovered / +d.confirmed))
-			.range([ 'red', 'green' ]);
+			.range([ '#b94848', '#13e713' ]);
 		stateEnter.append('rect');
 		stateEnter.append('text');
 		stateEnter
